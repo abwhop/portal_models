@@ -1,4 +1,4 @@
-package portal_models
+package models
 
 type GQLErrorRespond struct {
 	Errors []struct {

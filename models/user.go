@@ -1,11 +1,9 @@
-package portal_models
+package models
 
 import (
 	"context"
 	"database/sql/driver"
 	"encoding/json"
-	"github.com/lib/pq"
-	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 

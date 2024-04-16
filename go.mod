@@ -1,4 +1,4 @@
-module portal_models
+module github.com/abwhop/portal_models
 
 go 1.21.2
 

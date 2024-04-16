@@ -1,6 +1,4 @@
-package portal_models
-
-import "github.com/lib/pq"
+package models
 
 type PostGQLRespond struct {
 	Data struct {

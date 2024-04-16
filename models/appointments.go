@@ -1,8 +1,6 @@
-package portal_models
+package models
 
-import (
-	"github.com/lib/pq"
-)
+import "github.com/lib/pq"
 
 type AppointmentsGQLRespond struct {
 	Data struct {

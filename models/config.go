@@ -1,4 +1,4 @@
-package portal_models
+package models
 
 type Config struct {
 	Database *DatabaseConfig

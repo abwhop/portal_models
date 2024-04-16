@@ -1,4 +1,4 @@
-package portal_models
+package models
 
 import (
 	"context"
@@ -8,21 +8,21 @@ import (
 	"gorm.io/gorm/clause"
 )
 
-type ViewsAPI struct {
+type LikesAPI struct {
 	Count int        `json:"count"`
 	Users []*UserAPI `json:"users"`
 }
 
-type ViewsDB struct {
+type LikesDB struct {
 	Count int            `json:"count"`
 	Users *ListOfUsersDB `json:"users"`
 }
 
-func (u ViewsDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
-	if user, err := json.Marshal(u); err == nil {
+func (u LikesDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+	if item, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",
-			Vars: []interface{}{string(user)},
+			Vars: []interface{}{string(item)},
 		}
 	} else {
 		return clause.Expr{
@@ -32,11 +32,11 @@ func (u ViewsDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	}
 }
 
-func (u ViewsDB) Value() (driver.Value, error) {
-	var user []byte
+func (u LikesDB) Value() (driver.Value, error) {
+	var item []byte
 	var err error
-	if user, err = json.Marshal(u); err != nil {
+	if item, err = json.Marshal(u); err != nil {
 		return nil, err
 	}
-	return string(user), nil
+	return string(item), nil
 }

@@ -1,8 +1,4 @@
-package portal_models
-
-import (
-	"github.com/lib/pq"
-)
+package models
 
 type NewsGQLRespond struct {
 	Data struct {

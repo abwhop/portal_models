@@ -1,5 +1,7 @@
 package models
 
+import "github.com/lib/pq"
+
 type PostGQLRespond struct {
 	Data struct {
 		BlogPosts []*PostAPI `json:"blog_posts"`

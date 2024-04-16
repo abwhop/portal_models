@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql/driver"
 	"encoding/json"
+	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 

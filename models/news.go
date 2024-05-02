@@ -56,6 +56,7 @@ type NewsBreafe struct {
 	Files           *ListOfFileDB    `gorm:"column:files" json:"files"`
 	VoteNum         pq.Int64Array    `gorm:"column:vote_num;type:int[]" json:"vote_num"`
 	FormId          pq.Int64Array    `gorm:"column:form_id;type:int[]" json:"form_id"`
+	Tags            pq.StringArray   `gorm:"column:tags;type:varchar[]" json:"tags"`
 }
 
 func (NewsBreafe) TableName() string {

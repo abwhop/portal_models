@@ -30,6 +30,7 @@ type NewsAPI struct {
 	RepostBlog *PostAPI      `json:"repost_blog"`
 	Files      []*FileAPI    `json:"files"`
 	VoteNum    interface{}   `json:"vote_num"`
+	Tags       []*Tag        `json:"tags"`
 }
 
 type NewsBreafe struct {

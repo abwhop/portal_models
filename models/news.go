@@ -33,7 +33,7 @@ type NewsAPI struct {
 	Tags       []*Tag        `json:"tags"`
 }
 
-type NewsBreafe struct {
+type NewsBrief struct {
 	Id                 int                  `gorm:"column:id;primaryKey" json:"id"`
 	Type               string               `gorm:"column:type;primaryKey" json:"type"`
 	PublishDate        int                  `gorm:"column:publish_date" json:"publish_date"`
@@ -60,6 +60,6 @@ type NewsBreafe struct {
 	Tags            pq.StringArray   `gorm:"column:tags;type:varchar[]" json:"tags"`
 }
 
-func (NewsBreafe) TableName() string {
+func (NewsBrief) TableName() string {
 	return "public.bitrix_news"
 }

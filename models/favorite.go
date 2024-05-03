@@ -124,3 +124,12 @@ func (u FavoriteWorkgroup) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }*/
+
+type NewsFavoriteBD struct {
+	UserId int `gorm:"column:user_id;primaryKey" json:"user_id"`
+	NewsId int `gorm:"column:news_id;primaryKey" json:"news_id"`
+}
+
+func (NewsFavoriteBD) TableName() string {
+	return "public.bitrix_news_favorites"
+}

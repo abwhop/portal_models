@@ -86,3 +86,12 @@ type RubricVacancy struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
+
+type SubscribedRubric struct {
+	UserId   int `gorm:"column:user_id;primaryKey" json:"userId"`
+	RubricId int `gorm:"column:rubric_id;primaryKey" json:"rubricId"`
+}
+
+func (SubscribedRubric) TableName() string {
+	return "public.bitrix_news_rubrics"
+}

@@ -112,7 +112,7 @@ type NewsBrief struct {
 	DateUpdated   int       `gorm:"column:date_updated" json:"dateUpdated"`
 	LogId         int       `gorm:"column:logId" json:"logId"`
 	Rubric        *RubricDB `gorm:"column:rubric" json:"rubric"`
-	//Data          interface{} `gorm:"column:data"  json:"data"`
+	Data          *PostDB   `gorm:"column:data"  json:"data"`
 	//ChangeDate int `gorm:"column:change_date" json:"change_date"`
 
 	//Descriptions *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`

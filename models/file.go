@@ -46,6 +46,10 @@ func (u ListOfFileDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	}
 }
 
+func (u *ListOfFileDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
+
 func (u ListOfFileDB) Value() (driver.Value, error) {
 	var user []byte
 	var err error
@@ -76,4 +80,7 @@ func (u FileDB) Value() (driver.Value, error) {
 		return nil, err
 	}
 	return string(user), nil
+}
+func (u *FileDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }

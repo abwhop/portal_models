@@ -40,3 +40,6 @@ func (u LikesDB) Value() (driver.Value, error) {
 	}
 	return string(item), nil
 }
+func (u *LikesDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}

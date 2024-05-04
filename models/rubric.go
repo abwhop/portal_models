@@ -20,6 +20,10 @@ type RubricDB struct {
 	Code string `json:"code"`
 }
 
+// Scan implements the sql.Scanner interface
+func (u *RubricDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
 func (u RubricDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	if item, err := json.Marshal(u); err == nil {
 		return clause.Expr{
@@ -70,6 +74,9 @@ func (u UserRubrics) Value() (driver.Value, error) {
 		return nil, err
 	}
 	return string(user), nil
+}
+func (u *UserRubrics) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }
 
 type RubricNews struct {

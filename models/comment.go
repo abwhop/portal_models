@@ -46,7 +46,9 @@ func (u ListOfCommentDB) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }
-
+func (u *ListOfCommentDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
 func (u CommentDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
@@ -68,4 +70,7 @@ func (u CommentDB) Value() (driver.Value, error) {
 		return nil, err
 	}
 	return string(user), nil
+}
+func (u *CommentDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }

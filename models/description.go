@@ -44,3 +44,6 @@ func (u ListOfDescriptionDB) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }
+func (u *ListOfDescriptionDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}

@@ -37,6 +37,10 @@ func (u UserFavorites) Value() (driver.Value, error) {
 	return string(user), nil
 }
 
+func (u *UserFavorites) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
+
 type FavoriteBlogPost struct {
 	Id    int    `json:"id"`
 	Title string `json:"title"`

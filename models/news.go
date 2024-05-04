@@ -88,6 +88,7 @@ type NewsDetail struct {
 	CalendarEvent string               `gorm:"column:calendarEvent" json:"calendarEvent"`
 	Description   string               `gorm:"column:description" json:"description"`
 	IsLiked       bool                 `gorm:"column:isLiked" json:"isLiked"`
+	Data          *PostDB              `gorm:"column:data"  json:"data"`
 }
 
 func (NewsDetail) TableName() string {

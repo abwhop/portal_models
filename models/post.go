@@ -1,6 +1,13 @@
 package models
 
-import "github.com/lib/pq"
+import (
+	"context"
+	"database/sql/driver"
+	"encoding/json"
+	"github.com/lib/pq"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
+)
 
 type PostGQLRespond struct {
 	Data struct {
@@ -84,4 +91,32 @@ type PostDB struct {
 
 func (PostDB) TableName() string {
 	return "public.bitrix_posts"
+}
+
+type RepostedPostDB PostDB
+
+func (u RepostedPostDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+	if item, err := json.Marshal(u); err == nil {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{string(item)},
+		}
+	} else {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{nil},
+		}
+	}
+}
+
+func (u RepostedPostDB) Value() (driver.Value, error) {
+	var item []byte
+	var err error
+	if item, err = json.Marshal(u); err != nil {
+		return nil, err
+	}
+	return string(item), nil
+}
+func (u *RepostedPostDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }

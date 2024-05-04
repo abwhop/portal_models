@@ -33,7 +33,7 @@ type NewsAPI struct {
 	Tags       []*Tag        `json:"tags"`
 }
 
-type NewsBrief struct {
+type NewsDB struct {
 	Id                 int                  `gorm:"column:id;primaryKey" json:"id"`
 	Type               string               `gorm:"column:type;primaryKey" json:"type"`
 	PublishDate        int                  `gorm:"column:publish_date" json:"publish_date"`
@@ -47,20 +47,19 @@ type NewsBrief struct {
 	Rights             pq.StringArray       `gorm:"column:rights;type:varchar[]" json:"rights"`
 	ImageUrl           string               `gorm:"column:image_url" json:"image_url"`
 	PreviewDescription string               `gorm:"column:preview_description" json:"previewDescription"`
-	//XmlId              string               `gorm:"column:xml_id" json:"xml_id"`
-	Rubric          *RubricDB        `gorm:"column:rubric" json:"rubric"`
-	Author          *UserDB          `gorm:"column:author" json:"author"`
-	Likes           *LikesDB         `gorm:"column:likes" json:"likes"`
-	Views           *ViewsDB         `gorm:"column:views" json:"views"`
-	ReposBlogPostId int              `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
-	Comments        *ListOfCommentDB `gorm:"column:comments" json:"comments"`
-	Files           *ListOfFileDB    `gorm:"column:files" json:"files"`
-	VoteNum         pq.Int64Array    `gorm:"column:vote_num;type:int[]" json:"vote_num"`
-	FormId          pq.Int64Array    `gorm:"column:form_id;type:int[]" json:"form_id"`
-	Tags            pq.StringArray   `gorm:"column:tags;type:varchar[]" json:"tags"`
+	Rubric             *RubricDB            `gorm:"column:rubric" json:"rubric"`
+	Author             *UserDB              `gorm:"column:author" json:"author"`
+	Likes              *LikesDB             `gorm:"column:likes" json:"likes"`
+	Views              *ViewsDB             `gorm:"column:views" json:"views"`
+	ReposBlogPostId    int                  `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
+	Comments           *ListOfCommentDB     `gorm:"column:comments" json:"comments"`
+	Files              *ListOfFileDB        `gorm:"column:files" json:"files"`
+	VoteNum            pq.Int64Array        `gorm:"column:vote_num;type:int[]" json:"vote_num"`
+	FormId             pq.Int64Array        `gorm:"column:form_id;type:int[]" json:"form_id"`
+	Tags               pq.StringArray       `gorm:"column:tags;type:varchar[]" json:"tags"`
 }
 
-func (NewsBrief) TableName() string {
+func (NewsDB) TableName() string {
 	return "public.bitrix_news"
 }
 
@@ -92,5 +91,48 @@ type NewsDetail struct {
 }
 
 func (NewsDetail) TableName() string {
+	return "public.bitrix_news"
+}
+
+type NewsBrief struct {
+	Type          string    `gorm:"column:type;primaryKey" json:"type"`
+	Id            int       `gorm:"column:id;primaryKey" json:"id"`
+	IsFavorite    bool      `gorm:"column:isFavorite" json:"isFavorite"`
+	IsRubric      bool      `gorm:"column:isRubric" json:"isRubric"`
+	Title         string    `gorm:"column:title" json:"title"`
+	Description   string    `gorm:"column:description" json:"description"`
+	ImageUrl      string    `gorm:"column:imageUrl" json:"imageUrl"`
+	CanComment    bool      `gorm:"column:canComment" json:"canComment"`
+	IsLiked       bool      `gorm:"column:isLiked" json:"isLiked"`
+	CanLikes      bool      `gorm:"column:canLikes" json:"canLikes"`
+	CountComments int       `gorm:"column:countComments" json:"countComments"`
+	CountViews    int       `gorm:"column:countViews" json:"countViews"`
+	CountLikes    int       `gorm:"column:countLikes" json:"countLikes"`
+	DateCreated   int       `gorm:"column:date_created" json:"dateCreated"`
+	DateUpdated   int       `gorm:"column:date_updated" json:"dateUpdated"`
+	LogId         int       `gorm:"column:logId" json:"logId"`
+	Rubric        *RubricDB `gorm:"column:rubric" json:"rubric"`
+	//Data          interface{} `gorm:"column:data"  json:"data"`
+	//ChangeDate int `gorm:"column:change_date" json:"change_date"`
+
+	//Descriptions *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`
+
+	//Published    bool                 `gorm:"column:published" json:"published"`
+	//Rights          pq.StringArray       `gorm:"column:rights;type:varchar[]" json:"rights"`
+
+	//PreviewText     string           `gorm:"column:preview_text" json:"preview_text"`
+	//XmlId  string    `gorm:"column:xml_id" json:"xml_id"`
+
+	//Author          *UserDB          `gorm:"column:author" json:"author"`
+	Likes *LikesDB `gorm:"column:likes" json:"likes"`
+	Views *ViewsDB `gorm:"column:views" json:"views"`
+	/*ReposBlogPostId int              `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
+	Comments        *ListOfCommentDB `gorm:"column:comments" json:"comments"`
+	Files           *ListOfFileDB    `gorm:"column:files" json:"files"`
+	VoteNum         pq.Int64Array    `gorm:"column:vote_num;type:int[]" json:"votes"`
+	FormId          pq.Int64Array    `gorm:"column:form_id;type:int[]" json:"forms"`*/
+}
+
+func (NewsBrief) TableName() string {
 	return "public.bitrix_news"
 }

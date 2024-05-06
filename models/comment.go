@@ -9,10 +9,10 @@ import (
 )
 
 type CommentAPI struct {
-	Id          int      `json:"id"`
-	Text        string   `json:"text"`
-	DateCreated int64    `json:"date_created"`
-	Author      *UserAPI `json:"author"`
+	Id         int      `json:"id"`
+	Text       string   `json:"text"`
+	DateCreate int64    `json:"date_create"`
+	Author     *UserAPI `json:"author"`
 }
 
 type CommentDB struct {

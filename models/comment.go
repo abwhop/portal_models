@@ -18,7 +18,7 @@ type CommentAPI struct {
 type CommentDB struct {
 	Id          int     `json:"id"`
 	Text        string  `json:"text"`
-	DateCreated int64   `json:"date_created"`
+	DateCreated int64   `json:"dateCreated"`
 	Author      *UserDB `json:"author"`
 }
 

@@ -23,6 +23,10 @@ type BlogDB struct {
 	Author           *UserDB        `gorm:"column:author;" json:"author"`
 	Subscribers      *ListOfUsersDB `gorm:"column:subscribers;" json:"subscribers"`
 	SubscribersCount int            `gorm:"column:subscribersCount;" json:"subscribersCount"`
+	IsFavorite       bool           `gorm:"column:isFavorite;" json:"isFavorite"`
+	IsSubscription   bool           `gorm:"column:isSubscription;" json:"isSubscription"`
+	IsSubscriber     bool           `gorm:"column:isSubscriber;" json:"isSubscriber"`
+	CountCommunities int            `gorm:"column:countCommunities;" json:"countCommunities"`
 }
 
 func (BlogDB) TableName() string {

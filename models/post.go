@@ -87,6 +87,7 @@ type PostDB struct {
 	PostRights       pq.StringArray       `gorm:"column:postRights;type:varchar[]" json:"post_rights"`
 	FormId           pq.Int64Array        `gorm:"column:formId;type:int[]" json:"form_id"`
 	CommentsCount    int                  `gorm:"column:commentsCount;" json:"comments_count"`
+	Data             *PostOrNews          `gorm:"column:data;" json:"data"`
 }
 
 func (PostDB) TableName() string {
@@ -118,5 +119,68 @@ func (u RepostedPostDB) Value() (driver.Value, error) {
 	return string(item), nil
 }
 func (u *RepostedPostDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
+
+type Post struct {
+	Id            int              `gorm:"column:id;primaryKey" json:"id"`
+	Title         string           `gorm:"column:title;" json:"title"`
+	ImageUrl      string           `gorm:"column:imageUrl;" json:"imageUrl"`
+	CreatedDate   int64            `gorm:"column:dateCreated;" json:"dateCreated"`
+	Files         *ListOfFileDB    `gorm:"column:files;" json:"files"`
+	Author        *UserDB          `gorm:"column:author;" json:"author"`
+	Description   string           `gorm:"column:description;" json:"description"`
+	CountLikes    int              `gorm:"column:countLikes;" json:"countLikes"`
+	CountViews    int              `gorm:"column:countViews;" json:"countViews"`
+	IsDraft       bool             `gorm:"column:isDraft;" json:"isDraft"`
+	CountComments int              `gorm:"column:countComments;" json:"countComments"`
+	IsView        bool             `gorm:"column:isView;" json:"isView"`
+	IsFavorite    bool             `gorm:"column:isFavorite;" json:"isFavorite"`
+	IsLiked       bool             `gorm:"column:isLiked;" json:"isLiked"`
+	Type          string           `gorm:"column:type;" json:"type"`
+	Data          *PostOrNews      `gorm:"column:data;" json:"data"`
+	Comments      *ListOfCommentDB `gorm:"column:comments;" json:"comments"`
+}
+
+func (Post) TableName() string {
+	return "public.bitrix_posts"
+}
+
+type PostOrNews struct {
+	Type          string        `gorm:"column:type;" json:"type"`
+	Id            int           `gorm:"column:id;primaryKey" json:"id"`
+	IsFavorite    bool          `gorm:"column:isFavorite;" json:"isFavorite"`
+	IsRubric      bool          `gorm:"column:isRubric" json:"isRubric"`
+	Title         string        `gorm:"column:title;" json:"title"`
+	Description   string        `gorm:"column:description;" json:"description"`
+	ImageUrl      string        `gorm:"column:imageUrl;" json:"imageUrl"`
+	CanComment    bool          `gorm:"column:canComment" json:"canComment"`
+	IsLiked       bool          `gorm:"column:isLiked;" json:"isLiked"`
+	CanLikes      bool          `gorm:"column:canLikes" json:"canLikes"`
+	CountComments int           `gorm:"column:countComments;" json:"countComments"`
+	CountViews    int           `gorm:"column:countViews;" json:"countViews"`
+	CountLikes    int           `gorm:"column:countLikes;" json:"countLikes"`
+	DateCreated   int64         `gorm:"column:dateCreated;" json:"dateCreated"`
+	DateUpdated   int           `gorm:"column:date_updated" json:"dateUpdated"`
+	Files         *ListOfFileDB `gorm:"column:files;" json:"files"`
+	Author        *UserDB       `gorm:"column:author;" json:"author"`
+	IsDraft       bool          `gorm:"column:isDraft;" json:"isDraft"`
+	IsView        bool          `gorm:"column:isView;" json:"isView"`
+
+	Data     *PostOrNews      `gorm:"column:data;" json:"data"`
+	Comments *ListOfCommentDB `gorm:"column:comments;" json:"comments"`
+}
+
+func (u PostOrNews) Value() (driver.Value, error) {
+	var user []byte
+	var err error
+	if user, err = json.Marshal(u); err != nil {
+		return nil, err
+	}
+	return string(user), nil
+}
+
+// Scan implements the sql.Scanner interface
+func (u *PostOrNews) Scan(v interface{}) error {
 	return json.Unmarshal(v.([]byte), &u)
 }

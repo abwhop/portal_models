@@ -113,6 +113,10 @@ func (u ListOfUsersDB) Value() (driver.Value, error) {
 	return string(user), nil
 }
 
+func (u *ListOfUsersDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
+
 func (u UserDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
@@ -135,6 +139,9 @@ func (u UserDB) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }
+func (u *UserDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
 
 type UserShort struct {
 	PersonnelNumber int    `json:"personnel_number"`
@@ -151,6 +158,32 @@ type UserShort struct {
 	Birthday        int    `json:"birthday"`
 	Active          bool   `json:"active"`
 	Gender          string `json:"gender"`
+}
+
+func (u UserShort) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+	if user, err := json.Marshal(u); err == nil {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{string(user)},
+		}
+	} else {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{nil},
+		}
+	}
+}
+
+func (u UserShort) Value() (driver.Value, error) {
+	var user []byte
+	var err error
+	if user, err = json.Marshal(u); err != nil {
+		return nil, err
+	}
+	return string(user), nil
+}
+func (u *UserShort) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }
 
 type UserFullDB struct {

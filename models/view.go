@@ -40,3 +40,7 @@ func (u ViewsDB) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }
+
+func (u *ViewsDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}

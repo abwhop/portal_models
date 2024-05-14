@@ -90,7 +90,7 @@ type UserDB struct {
 
 type ListOfUsersDB []*UserDB
 
-func (u ListOfUsersDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+func (u ListOfUsersDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",

@@ -74,13 +74,13 @@ type VoteDB struct {
 	Description string            `gorm:"column:description" json:"description"`
 	Author      *UserDB           `gorm:"column:author" json:"author"`
 	Active      bool              `gorm:"column:active" json:"active"`
-	DateFrom    int               `gorm:"column:date_from" json:"date_from"`
-	DateTo      int               `gorm:"column:date_to" json:"date_to"`
+	DateFrom    int               `gorm:"column:date_from" json:"dateFrom"`
+	DateTo      int               `gorm:"column:date_to" json:"dateTo"`
 	Questions   *ListOfQuestionDB `gorm:"column:questions" json:"questions"`
 	Img         *FileDB           `gorm:"column:img" json:"img"`
-	DateChange  int               `gorm:"column:date_change" json:"date_change"`
+	DateChange  int               `gorm:"column:date_change" json:"dateChange"`
 	Url         string            `gorm:"column:url" json:"url"`
-	VoteGroup   *VoteGroupDB      `gorm:"column:vote_group" json:"vote_group"`
+	VoteGroup   *VoteGroupDB      `gorm:"column:vote_group" json:"voteGroup"`
 	Views       int               `gorm:"column:views" json:"views"`
 	Counter     int               `gorm:"column:counter" json:"counter"`
 }
@@ -93,13 +93,13 @@ type QuestionDB struct {
 	Id           int             `json:"id"`
 	Sort         int             `json:"sort"`
 	Question     string          `json:"question"`
-	DateChange   int             `json:"date_change"`
+	DateChange   int             `json:"dateChange"`
 	Active       bool            `json:"active"`
 	Counter      int             `json:"counter"`
 	Diagram      bool            `json:"diagram"`
 	Required     bool            `json:"required"`
-	DiagramType  string          `json:"diagram_type"`
-	QuestionType string          `json:"question_type"`
+	DiagramType  string          `json:"diagramType"`
+	QuestionType string          `json:"questionType"`
 	Answers      *ListOfAnswerDB `json:"answers"`
 }
 
@@ -135,8 +135,8 @@ type AnswerDB struct {
 	Id         int    `json:"id"`
 	Sort       int    `json:"sort"`
 	Message    string `json:"message"`
-	FieldType  string `json:"field_type"`
-	DateChange int    `json:"date_change"`
+	FieldType  string `json:"fieldType"`
+	DateChange int    `json:"dateChange"`
 	Active     bool   `json:"active"`
 	Counter    *int   `json:"counter"`
 }
@@ -172,11 +172,11 @@ type VoteGroupDB struct {
 	Sort       int      `json:"sort"`
 	Active     bool     `json:"active"`
 	Hidden     bool     `json:"hidden"`
-	DateChange int      `json:"date_change"`
+	DateChange int      `json:"dateChange"`
 	Title      string   `json:"title"`
-	VoteSingle bool     `json:"vote_single"`
-	UseCaptcha bool     `json:"use_captcha"`
-	SiteId     []string `json:"site_id"`
+	VoteSingle bool     `json:"voteSingle"`
+	UseCaptcha bool     `json:"useCaptcha"`
+	SiteId     []string `json:"siteId"`
 }
 
 func (u VoteGroupDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
@@ -211,16 +211,16 @@ type VoteDetail struct {
 	Description  string            `json:"description"`
 	Author       *UserDB           `json:"author"`
 	Active       bool              `json:"active"`
-	DateFrom     int               `json:"date_from"`
-	DateTo       int               `json:"date_to"`
+	DateFrom     int               `json:"dateFrom"`
+	DateTo       int               `json:"dateTo"`
 	Questions    *ListOfQuestionDB `json:"questions"`
 	Img          *FileDB           `json:"img"`
-	VoteGroup    *VoteGroupDB      `json:"vote_group"`
-	DateChange   int               `json:"date_change"`
+	VoteGroup    *VoteGroupDB      `json:"voteGroup"`
+	DateChange   int               `json:"dateChange"`
 	Url          string            `json:"url"`
 	Counter      int               `json:"counter"`
 	Views        int               `json:"views"`
-	IsVotePassed bool              `json:"is_vote_passed"`
+	IsVotePassed bool              `json:"isVotePassed"`
 }
 
 func (u VoteDetail) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {

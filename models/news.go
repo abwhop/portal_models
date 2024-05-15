@@ -8,6 +8,7 @@ type NewsGQLRespond struct {
 	} `json:"data"`
 }
 
+// NewsAPI Модель новости, получаемая с портала
 type NewsAPI struct {
 	Id          int      `json:"id"`
 	Name        string   `json:"name"`
@@ -33,6 +34,7 @@ type NewsAPI struct {
 	Tags       []*Tag        `json:"tags"`
 }
 
+// NewsDB Модель новости, сохраняемая в базе данных
 type NewsDB struct {
 	Id                 int                  `gorm:"column:id;primaryKey" json:"id"`
 	Type               string               `gorm:"column:type;primaryKey" json:"type"`
@@ -54,7 +56,7 @@ type NewsDB struct {
 	ReposBlogPostId    int                  `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
 	Comments           *ListOfCommentDB     `gorm:"column:comments" json:"comments"`
 	Files              *ListOfFileDB        `gorm:"column:files" json:"files"`
-	VoteNum            pq.Int64Array        `gorm:"column:vote_num;type:int[]" json:"vote_num"`
+	VoteIds            pq.Int64Array        `gorm:"column:vote_id;type:int[]" json:"vote_id"`
 	FormId             pq.Int64Array        `gorm:"column:form_id;type:int[]" json:"form_id"`
 	Tags               pq.StringArray       `gorm:"column:tags;type:varchar[]" json:"tags"`
 }
@@ -79,7 +81,6 @@ type NewsDetail struct {
 	IsView        bool      `gorm:"column:isView" json:"isView"`
 	IsFavorite    bool      `gorm:"column:isFavorite" json:"isFavorite"`
 	IsRubric      bool      `gorm:"column:isRubric" json:"isRubric"`
-	//Data          interface{}          `gorm:"column:data" json:"data"`
 	//Votes         interface{}          `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`
 	Descriptions  *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`

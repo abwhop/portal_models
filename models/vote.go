@@ -127,6 +127,9 @@ func (u ListOfQuestionDB) Value() (driver.Value, error) {
 	}
 	return string(user), nil
 }
+func (u *ListOfQuestionDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
 
 type AnswerDB struct {
 	Id         int    `json:"id"`
@@ -176,7 +179,7 @@ type VoteGroupDB struct {
 	SiteId     []string `json:"site_id"`
 }
 
-func (u VoteGroupDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+func (u VoteGroupDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",
@@ -197,4 +200,51 @@ func (u VoteGroupDB) Value() (driver.Value, error) {
 		return nil, err
 	}
 	return string(user), nil
+}
+func (u *VoteGroupDB) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
+}
+
+type VoteDetail struct {
+	Id           int               `json:"id"`
+	Title        string            `json:"title"`
+	Description  string            `json:"description"`
+	Author       *UserDB           `json:"author"`
+	Active       bool              `json:"active"`
+	DateFrom     int               `json:"date_from"`
+	DateTo       int               `json:"date_to"`
+	Questions    *ListOfQuestionDB `json:"questions"`
+	Img          *FileDB           `json:"img"`
+	VoteGroup    *VoteGroupDB      `json:"vote_group"`
+	DateChange   int               `json:"date_change"`
+	Url          string            `json:"url"`
+	Counter      int               `json:"counter"`
+	Views        int               `json:"views"`
+	IsVotePassed bool              `json:"is_vote_passed"`
+}
+
+func (u VoteDetail) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
+	if user, err := json.Marshal(u); err == nil {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{string(user)},
+		}
+	} else {
+		return clause.Expr{
+			SQL:  "?",
+			Vars: []interface{}{nil},
+		}
+	}
+}
+
+func (u VoteDetail) Value() (driver.Value, error) {
+	var user []byte
+	var err error
+	if user, err = json.Marshal(u); err != nil {
+		return nil, err
+	}
+	return string(user), nil
+}
+func (u *VoteDetail) Scan(v interface{}) error {
+	return json.Unmarshal(v.([]byte), &u)
 }

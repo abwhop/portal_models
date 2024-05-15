@@ -30,7 +30,7 @@ type NewsAPI struct {
 	Comments   []*CommentAPI `json:"comments"`
 	RepostBlog *PostAPI      `json:"repost_blog"`
 	Files      []*FileAPI    `json:"files"`
-	VoteNum    interface{}   `json:"vote_num"`
+	VoteNum    []int         `json:"vote_num"`
 	Tags       []*Tag        `json:"tags"`
 }
 
@@ -81,7 +81,7 @@ type NewsDetail struct {
 	IsView        bool      `gorm:"column:isView" json:"isView"`
 	IsFavorite    bool      `gorm:"column:isFavorite" json:"isFavorite"`
 	IsRubric      bool      `gorm:"column:isRubric" json:"isRubric"`
-	//Votes         interface{}          `gorm:"column:votes" json:"votes"`
+	Votes         *         `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`
 	Descriptions  *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`
 	Comments      *ListOfCommentDB     `gorm:"column:comments" json:"comments"`

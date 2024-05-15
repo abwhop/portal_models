@@ -56,7 +56,7 @@ type NewsDB struct {
 	ReposBlogPostId    int                  `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
 	Comments           *ListOfCommentDB     `gorm:"column:comments" json:"comments"`
 	Files              *ListOfFileDB        `gorm:"column:files" json:"files"`
-	VoteIds            pq.Int64Array        `gorm:"column:vote_id;type:int[]" json:"vote_id"`
+	VoteIds            pq.Int64Array        `gorm:"column:vote_ids;type:int[]" json:"vote_ids"`
 	FormId             pq.Int64Array        `gorm:"column:form_id;type:int[]" json:"form_id"`
 	Tags               pq.StringArray       `gorm:"column:tags;type:varchar[]" json:"tags"`
 }

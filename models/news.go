@@ -22,16 +22,17 @@ type NewsAPI struct {
 	Img         string   `json:"img"`
 	PreviewText string   `json:"preview_text"`
 	//XmlId       string        `json:"xml_id"`
-	SliderFile string        `json:"slider_file"`
-	Rubric     *RubricAPI    `json:"rubric"`
-	Author     *UserAPI      `json:"author"`
-	Likes      *LikesAPI     `json:"likes"`
-	Views      *ViewsAPI     `json:"views"`
-	Comments   []*CommentAPI `json:"comments"`
-	RepostBlog *PostAPI      `json:"repost_blog"`
-	Files      []*FileAPI    `json:"files"`
-	VoteNum    []int         `json:"vote_num"`
-	Tags       []*TagAPI     `json:"tags"`
+	SliderFile     string              `json:"slider_file"`
+	Rubric         *RubricAPI          `json:"rubric"`
+	Author         *UserAPI            `json:"author"`
+	Likes          *LikesAPI           `json:"likes"`
+	Views          *ViewsAPI           `json:"views"`
+	Comments       []*CommentAPI       `json:"comments"`
+	RepostBlog     *PostAPI            `json:"repost_blog"`
+	Files          []*FileAPI          `json:"files"`
+	VoteNum        []int               `json:"vote_num"`
+	Tags           []*TagAPI           `json:"tags"`
+	CalendarEvents []*CalendarEventAPI `json:"calendar_events"`
 }
 
 // NewsDB Модель новости, сохраняемая в базе данных

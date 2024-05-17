@@ -1,5 +1,13 @@
 package models
 
+import (
+	"context"
+	"database/sql/driver"
+	"encoding/json"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
+)
+
 type CalendarEventAPI struct {
 	Id          int    `json:"id"`
 	Title       string `json:"title"`
@@ -16,7 +24,6 @@ type CalendarEventAPI struct {
 }
 
 type CalendarEventDB struct {
-	Nested
 	Id          int    `json:"id"`
 	Title       string `json:"title"`
 	DateStart   int64  `json:"dateStart"`
@@ -31,7 +38,7 @@ type CalendarEventDB struct {
 	DateUpdate  int64  `json:"dateUpdate"`
 }
 
-/*func (u CalendarEventDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+func (u CalendarEventDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",
@@ -56,11 +63,11 @@ func (u CalendarEventDB) Value() (driver.Value, error) {
 
 func (u *CalendarEventDB) Scan(v interface{}) error {
 	return json.Unmarshal(v.([]byte), &u)
-}*/
+}
 
 type ListOfCalendarEventDB []*CalendarEventDB
 
-/*func (u ListOfCalendarEventDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+func (u ListOfCalendarEventDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
 	if user, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",
@@ -85,4 +92,4 @@ func (u ListOfCalendarEventDB) Value() (driver.Value, error) {
 
 func (u *ListOfCalendarEventDB) Scan(v interface{}) error {
 	return json.Unmarshal(v.([]byte), &u)
-}*/
+}

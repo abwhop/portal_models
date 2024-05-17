@@ -31,7 +31,7 @@ type NewsAPI struct {
 	RepostBlog *PostAPI      `json:"repost_blog"`
 	Files      []*FileAPI    `json:"files"`
 	VoteNum    []int         `json:"vote_num"`
-	Tags       []*Tag        `json:"tags"`
+	Tags       []*TagAPI     `json:"tags"`
 }
 
 // NewsDB Модель новости, сохраняемая в базе данных

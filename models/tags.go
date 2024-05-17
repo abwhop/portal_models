@@ -1,5 +1,5 @@
 package models
 
-type Tag struct {
+type TagAPI struct {
 	Name string `json:"name"`
 }

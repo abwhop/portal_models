@@ -16,8 +16,8 @@ type FeedDB struct {
 	CountComments int             `gorm:"column:countComments" json:"countComments"`
 	CountViews    int             `gorm:"column:countViews" json:"countViews"`
 	CountLikes    int             `gorm:"column:countLikes" json:"countLikes"`
-	DateCreated   int             `gorm:"column:date_created" json:"dateCreated"`
-	DateUpdated   int             `gorm:"column:date_updated" json:"dateUpdated"`
+	DateCreated   int             `gorm:"column:dateCreated" json:"dateCreated"`
+	DateUpdated   int             `gorm:"column:dateUpdated" json:"dateUpdated"`
 	LogId         int             `gorm:"column:logId" json:"logId"`
 	Rubric        *RubricDB       `gorm:"column:rubric" json:"rubric"`
 	Data          *RepostedPostDB `gorm:"column:data"  json:"data"`

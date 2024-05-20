@@ -85,13 +85,15 @@ type NewsDetail struct {
 	IsRubric      bool              `gorm:"column:isRubric" json:"isRubric"`
 	Votes         *ListOfVoteDetail `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`
-	Descriptions  *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`
-	Comments      *ListOfCommentDB     `gorm:"column:comments" json:"comments"`
-	Files         *ListOfFileDB        `gorm:"column:files" json:"files"`
-	CalendarEvent string               `gorm:"column:calendarEvent" json:"calendarEvent"`
-	Description   string               `gorm:"column:description" json:"description"`
-	IsLiked       bool                 `gorm:"column:isLiked" json:"isLiked"`
-	Data          *RepostedPostDB      `gorm:"column:data"  json:"data"`
+	Descriptions   *ListOfDescriptionDB   `gorm:"column:descriptions" json:"descriptions"`
+	Comments       *ListOfCommentDB       `gorm:"column:comments" json:"comments"`
+	Files          *ListOfFileDB          `gorm:"column:files" json:"files"`
+	CalendarEvent  string                 `gorm:"column:calendarEvent" json:"calendarEvent"`
+	Description    string                 `gorm:"column:description" json:"description"`
+	IsLiked        bool                   `gorm:"column:isLiked" json:"isLiked"`
+	Data           *RepostedPostDB        `gorm:"column:data"  json:"data"`
+	Tags           pq.StringArray         `gorm:"column:tags;type:varchar[]" json:"tags"`
+	CalendarEvents *ListOfCalendarEventDB `gorm:"column:calendar_events" json:"calendarEvents"`
 }
 
 func (NewsDetail) TableName() string {

@@ -97,7 +97,7 @@ func (PostDB) TableName() string {
 
 type RepostedPostDB PostDB
 
-func (u RepostedPostDB) GormValue(ctx context.Context, db *gorm.DB) clause.Expr {
+func (u RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	if item, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",

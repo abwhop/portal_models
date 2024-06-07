@@ -96,12 +96,12 @@ func (PostDB) TableName() string {
 }
 
 type RepostedPostDB struct {
-	Id               int              `gorm:"column:id;primaryKey" json:"id"`
-	Type             string           `gorm:"column:type;" json:"type"`
-	Title            string           `gorm:"column:title;" json:"title"`
-	Text             string           `gorm:"column:text;" json:"text"`
-	CreatedDate      int64            `gorm:"column:createDate;" json:"createDate"`
-	PublishDate      int64            `gorm:"column:publishDate;" json:"publishDate"`
+	Id               int              `json:"id"`
+	Type             string           `json:"type"`
+	Title            string           `json:"title"`
+	Text             string           `json:"text"`
+	CreatedDate      int64            `json:"createDate"`
+	PublishDate      int64            `json:"publishDate"`
 	Img              string           `gorm:"column:img;" json:"img"`
 	Rights           []string         `gorm:"column:rights;type:varchar[]" json:"rights"`
 	Files            []*FileDB        `gorm:"column:files;" json:"files"`

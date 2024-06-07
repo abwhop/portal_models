@@ -123,7 +123,7 @@ type RepostedPostDB struct {
 	Data             *PostOrNews      `json:"data"`
 }
 
-func (u RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
+func (u *RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	if item, err := json.Marshal(u); err == nil {
 		return clause.Expr{
 			SQL:  "?",
@@ -137,7 +137,7 @@ func (u RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	}
 }
 
-func (u RepostedPostDB) Value() (driver.Value, error) {
+func (u *RepostedPostDB) Value() (driver.Value, error) {
 	var item []byte
 	var err error
 	if item, err = json.Marshal(u); err != nil {
@@ -145,7 +145,7 @@ func (u RepostedPostDB) Value() (driver.Value, error) {
 	}
 	return string(item), nil
 }
-func (u RepostedPostDB) Scan(v interface{}) error {
+func (u *RepostedPostDB) Scan(v interface{}) error {
 	return json.Unmarshal(v.([]byte), &u)
 }
 

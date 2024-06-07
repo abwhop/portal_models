@@ -95,7 +95,33 @@ func (PostDB) TableName() string {
 	return "public.bitrix_posts"
 }
 
-type RepostedPostDB PostDB
+type RepostedPostDB struct {
+	Id               int                  `gorm:"column:id;primaryKey" json:"id"`
+	Type             string               `gorm:"column:type;" json:"type"`
+	Title            string               `gorm:"column:title;" json:"title"`
+	Text             string               `gorm:"column:text;" json:"text"`
+	CreatedDate      int64                `gorm:"column:createDate;" json:"createDate"`
+	PublishDate      int64                `gorm:"column:publishDate;" json:"publishDate"`
+	Img              string               `gorm:"column:img;" json:"img"`
+	Rights           pq.StringArray       `gorm:"column:rights;type:varchar[]" json:"rights"`
+	Files            *ListOfFileDB        `gorm:"column:files;" json:"files"`
+	Author           *UserDB              `gorm:"column:author;" json:"author"`
+	Likes            *LikesDB             `gorm:"column:likes;" json:"likes"`
+	Views            *ViewsDB             `gorm:"column:views;" json:"views"`
+	Comments         *ListOfCommentDB     `gorm:"column:comments;" json:"comments"`
+	Descriptions     *ListOfDescriptionDB `gorm:"column:descriptions;" json:"descriptions"`
+	BlogId           int                  `gorm:"column:blogId;" json:"blogId"`
+	RepostBlogPostId int                  `gorm:"column:repostBlogPostId;" json:"repostBlogPostId"`
+	RepostNewsId     int                  `gorm:"column:repostNewsId;" json:"repostNewsId"`
+	IsDraft          bool                 `gorm:"column:isDraft;" json:"isDraft"`
+	LastUpdateDate   int64                `gorm:"column:lastUpdateDate;" json:"lastUpdateDate"`
+	VoteNum          pq.Int64Array        `gorm:"column:voteNum;type:int[]" json:"voteNum"`
+	IsDeleted        bool                 `gorm:"column:isDeleted;" json:"isDeleted"`
+	PostRights       pq.StringArray       `gorm:"column:postRights;type:varchar[]" json:"postRights"`
+	FormId           pq.Int64Array        `gorm:"column:formId;type:int[]" json:"formId"`
+	CommentsCount    int                  `gorm:"column:commentsCount;" json:"commentsCount"`
+	Data             *PostOrNews          `gorm:"column:data;" json:"data"`
+}
 
 func (u RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {
 	if item, err := json.Marshal(u); err == nil {

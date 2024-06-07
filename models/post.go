@@ -119,7 +119,7 @@ func (u RepostedPostDB) Value() (driver.Value, error) {
 	}
 	return string(item), nil
 }
-func (u *RepostedPostDB) Scan(v interface{}) error {
+func (u RepostedPostDB) Scan(v interface{}) error {
 	return json.Unmarshal(v.([]byte), &u)
 }
 

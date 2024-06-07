@@ -96,12 +96,12 @@ func (PostDB) TableName() string {
 }
 
 type RepostedPostDB struct {
-	Id               int              `json:"id"`
-	Type             string           `json:"type"`
-	Title            string           `json:"title"`
-	Text             string           `json:"text"`
-	CreatedDate      int64            `json:"createDate"`
-	PublishDate      int64            `json:"publishDate"`
+	Id          int    `json:"id"`
+	Type        string `json:"type"`
+	Title       string `json:"title"`
+	Text        string `json:"text"`
+	DateCreated int64  `json:"dateCreated"`
+	//PublishDate      int64            `json:"publishDate"`
 	Img              string           `json:"img"`
 	Rights           []string         `json:"rights"`
 	Files            []*FileDB        `json:"files"`

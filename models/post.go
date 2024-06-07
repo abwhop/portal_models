@@ -102,25 +102,25 @@ type RepostedPostDB struct {
 	Text             string           `json:"text"`
 	CreatedDate      int64            `json:"createDate"`
 	PublishDate      int64            `json:"publishDate"`
-	Img              string           `gorm:"column:img;" json:"img"`
-	Rights           []string         `gorm:"column:rights;type:varchar[]" json:"rights"`
-	Files            []*FileDB        `gorm:"column:files;" json:"files"`
-	Author           *UserDB          `gorm:"column:author;" json:"author"`
-	Likes            *LikesDB         `gorm:"column:likes;" json:"likes"`
-	Views            *ViewsDB         `gorm:"column:views;" json:"views"`
-	Comments         []*CommentDB     `gorm:"column:comments;" json:"comments"`
-	Descriptions     []*DescriptionDB `gorm:"column:descriptions;" json:"descriptions"`
-	BlogId           int              `gorm:"column:blogId;" json:"blogId"`
-	RepostBlogPostId int              `gorm:"column:repostBlogPostId;" json:"repostBlogPostId"`
-	RepostNewsId     int              `gorm:"column:repostNewsId;" json:"repostNewsId"`
-	IsDraft          bool             `gorm:"column:isDraft;" json:"isDraft"`
-	LastUpdateDate   int64            `gorm:"column:lastUpdateDate;" json:"lastUpdateDate"`
-	VoteNum          []int            `gorm:"column:voteNum;type:int[]" json:"voteNum"`
-	IsDeleted        bool             `gorm:"column:isDeleted;" json:"isDeleted"`
-	PostRights       []string         `gorm:"column:postRights;type:varchar[]" json:"postRights"`
-	FormId           []int            `gorm:"column:formId;type:int[]" json:"formId"`
-	CommentsCount    int              `gorm:"column:commentsCount;" json:"commentsCount"`
-	Data             *PostOrNews      `gorm:"column:data;" json:"data"`
+	Img              string           `json:"img"`
+	Rights           []string         `json:"rights"`
+	Files            []*FileDB        `json:"files"`
+	Author           *UserDB          `json:"author"`
+	Likes            *LikesDB         `json:"likes"`
+	Views            *ViewsDB         `json:"views"`
+	Comments         []*CommentDB     `json:"comments"`
+	Descriptions     []*DescriptionDB `json:"descriptions"`
+	BlogId           int              `json:"blogId"`
+	RepostBlogPostId int              `json:"repostBlogPostId"`
+	RepostNewsId     int              `json:"repostNewsId"`
+	IsDraft          bool             `json:"isDraft"`
+	LastUpdateDate   int64            `json:"lastUpdateDate"`
+	VoteNum          []int            `json:"voteNum"`
+	IsDeleted        bool             `json:"isDeleted"`
+	PostRights       []string         `json:"postRights"`
+	FormId           []int            `json:"formId"`
+	CommentsCount    int              `json:"commentsCount"`
+	Data             *PostOrNews      `json:"data"`
 }
 
 func (u RepostedPostDB) GormValue(_ context.Context, _ *gorm.DB) clause.Expr {

@@ -26,7 +26,6 @@ type BlogDB struct {
 	IsDeleted        bool           `gorm:"column:isDeleted;" json:"isDeleted"`
 	IsUpdated        bool           `gorm:"column:isUpdated" json:"isUpdated"`
 	SubscribersCount int            `gorm:"column:subscribersCount;" json:"subscribersCount"`
-	CountCommunities int            `gorm:"column:countCommunities;" json:"countCommunities"`
 }
 
 func (BlogDB) TableName() string {

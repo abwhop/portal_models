@@ -65,7 +65,6 @@ type PostAPI struct {
 
 type PostDB struct {
 	Id               int                  `gorm:"column:id;primaryKey" json:"id"`
-	Type             string               `gorm:"column:type;" json:"type"`
 	Title            string               `gorm:"column:title;" json:"title"`
 	Text             string               `gorm:"column:text;" json:"text"`
 	CreatedDate      int64                `gorm:"column:createDate;" json:"createDate"`

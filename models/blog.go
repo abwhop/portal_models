@@ -16,6 +16,24 @@ type BlogAPI struct {
 }
 
 type BlogDB struct {
+	Id               int            `gorm:"column:id;primaryKey" json:"id"`
+	Name             string         `gorm:"column:name;" json:"name"`
+	Description      string         `gorm:"column:description;" json:"description"`
+	DateCreated      int            `gorm:"column:dateCreated;" json:"dateCreated"`
+	Author           *UserDB        `gorm:"column:author;" json:"author"`
+	Subscribers      *ListOfUsersDB `gorm:"column:subscribers;" json:"subscribers"`
+	LastUpdateDate   int            `gorm:"column:lastUpdateDate;" json:"lastUpdateDate"`
+	IsDeleted        bool           `gorm:"column:isDeleted;" json:"isDeleted"`
+	IsUpdated        bool           `gorm:"column:isUpdated" json:"isUpdated"`
+	SubscribersCount int            `gorm:"column:subscribersCount;" json:"subscribersCount"`
+	CountCommunities int            `gorm:"column:countCommunities;" json:"countCommunities"`
+}
+
+func (BlogDB) TableName() string {
+	return "public.bitrix_blogs"
+}
+
+type Blog struct {
 	BitrixId         int            `gorm:"column:id;primaryKey" json:"id"`
 	Name             string         `gorm:"column:name;" json:"name"`
 	Description      string         `gorm:"column:description;" json:"description"`
@@ -29,6 +47,6 @@ type BlogDB struct {
 	CountCommunities int            `gorm:"column:countCommunities;" json:"countCommunities"`
 }
 
-func (BlogDB) TableName() string {
+func (Blog) TableName() string {
 	return "public.bitrix_blogs"
 }

@@ -88,7 +88,7 @@ type PostDB struct {
 	PostRights       pq.StringArray       `gorm:"column:postRights;type:varchar[]" json:"postRights"`
 	FormId           pq.Int64Array        `gorm:"column:formId;type:int[]" json:"formId"`
 	CommentsCount    int                  `gorm:"column:commentsCount;" json:"commentsCount"`
-	Data             *PostOrNews          `gorm:"column:data;" json:"data"`
+	//Data             *PostOrNews          `gorm:"column:data;" json:"data"`
 }
 
 func (PostDB) TableName() string {

@@ -13,6 +13,7 @@ type FeedDB struct {
 	CanComment    bool            `gorm:"column:canComment" json:"canComment"`
 	IsLiked       bool            `gorm:"column:isLiked" json:"isLiked"`
 	CanLikes      bool            `gorm:"column:canLikes" json:"canLikes"`
+	FirstComment  *CommentDB      `gorm:"column:firstComment" json:"firstComment"`
 	CountComments int             `gorm:"column:countComments" json:"countComments"`
 	CountViews    int             `gorm:"column:countViews" json:"countViews"`
 	CountLikes    int             `gorm:"column:countLikes" json:"countLikes"`

@@ -140,3 +140,7 @@ type NewsBrief struct {
 	VoteNum         pq.Int64Array    `gorm:"column:vote_num;type:int[]" json:"votes"`
 	FormId          pq.Int64Array    `gorm:"column:form_id;type:int[]" json:"forms"`*/
 }
+
+func (NewsBrief) TableName() string {
+	return "public.bitrix_news"
+}

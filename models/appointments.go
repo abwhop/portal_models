@@ -21,15 +21,16 @@ type AppointmentsAPI struct {
 	Img         string   `json:"img"`
 	PreviewText string   `json:"preview_text"`
 	//XmlId       string        `json:"xml_id"`
-	SliderFile string        `json:"slider_file"`
-	Rubric     *RubricAPI    `json:"rubric"`
-	Author     *UserAPI      `json:"author"`
-	Likes      *LikesAPI     `json:"likes"`
-	Views      *ViewsAPI     `json:"views"`
-	Comments   []*CommentAPI `json:"comments"`
-	RepostBlog *PostAPI      `json:"repost_blog"`
-	Files      []*FileAPI    `json:"files"`
-	VoteNum    interface{}   `json:"vote_num"`
+	FirstComment *CommentAPI   `json:"first_comment"`
+	SliderFile   string        `json:"slider_file"`
+	Rubric       *RubricAPI    `json:"rubric"`
+	Author       *UserAPI      `json:"author"`
+	Likes        *LikesAPI     `json:"likes"`
+	Views        *ViewsAPI     `json:"views"`
+	Comments     []*CommentAPI `json:"comments"`
+	RepostBlog   *PostAPI      `json:"repost_blog"`
+	Files        []*FileAPI    `json:"files"`
+	VoteNum      interface{}   `json:"vote_num"`
 }
 
 type AppointmentsDB struct {
@@ -47,12 +48,13 @@ type AppointmentsDB struct {
 	ImageUrl           string               `gorm:"column:image_url" json:"image_url"`
 	PreviewDescription string               `gorm:"column:preview_description" json:"previewDescription"`
 	//XmlId              string               `gorm:"column:xml_id" json:"xml_id"`
-	Rubric   *RubricDB        `gorm:"column:rubric" json:"rubric"`
-	Author   *UserDB          `gorm:"column:author" json:"author"`
-	Likes    *LikesDB         `gorm:"column:likes" json:"likes"`
-	Views    *ViewsDB         `gorm:"column:views" json:"views"`
-	Comments *ListOfCommentDB `gorm:"column:comments" json:"comments"`
-	Files    *ListOfFileDB    `gorm:"column:files" json:"files"`
+	FirstComment *CommentDB       `gorm:"column:first_comment" json:"firstComment"`
+	Rubric       *RubricDB        `gorm:"column:rubric" json:"rubric"`
+	Author       *UserDB          `gorm:"column:author" json:"author"`
+	Likes        *LikesDB         `gorm:"column:likes" json:"likes"`
+	Views        *ViewsDB         `gorm:"column:views" json:"views"`
+	Comments     *ListOfCommentDB `gorm:"column:comments" json:"comments"`
+	Files        *ListOfFileDB    `gorm:"column:files" json:"files"`
 }
 
 func (AppointmentsDB) TableName() string {

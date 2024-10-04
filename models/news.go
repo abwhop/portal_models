@@ -27,6 +27,7 @@ type NewsAPI struct {
 	Author         *UserAPI            `json:"author"`
 	Likes          *LikesAPI           `json:"likes"`
 	Views          *ViewsAPI           `json:"views"`
+	FirstComment   *CommentAPI         `json:"first_comment"`
 	Comments       []*CommentAPI       `json:"comments"`
 	RepostBlog     *PostAPI            `json:"repost_blog"`
 	Files          []*FileAPI          `json:"files"`
@@ -56,6 +57,7 @@ type NewsDB struct {
 	Views              *ViewsDB               `gorm:"column:views" json:"views"`
 	ReposBlogPostId    int                    `gorm:"column:repost_blog_post_id" json:"repost_blog_post_id"`
 	Comments           *ListOfCommentDB       `gorm:"column:comments" json:"comments"`
+	FirstComment       *CommentDB             `gorm:"column:first_comment" json:"first_comment"`
 	Files              *ListOfFileDB          `gorm:"column:files" json:"files"`
 	VoteIds            pq.Int64Array          `gorm:"column:vote_ids;type:int[]" json:"vote_ids"`
 	FormId             pq.Int64Array          `gorm:"column:form_id;type:int[]" json:"form_id"`
@@ -86,6 +88,7 @@ type NewsDetail struct {
 	Votes         *ListOfVoteDetail `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`
 	Descriptions   *ListOfDescriptionDB   `gorm:"column:descriptions" json:"descriptions"`
+	FirstComment   *CommentDB             `gorm:"column:first_comment" json:"first_comment"`
 	Comments       *ListOfCommentDB       `gorm:"column:comments" json:"comments"`
 	Files          *ListOfFileDB          `gorm:"column:files" json:"files"`
 	Description    string                 `gorm:"column:description" json:"description"`
@@ -136,8 +139,4 @@ type NewsBrief struct {
 	Files           *ListOfFileDB    `gorm:"column:files" json:"files"`
 	VoteNum         pq.Int64Array    `gorm:"column:vote_num;type:int[]" json:"votes"`
 	FormId          pq.Int64Array    `gorm:"column:form_id;type:int[]" json:"forms"`*/
-}
-
-func (NewsBrief) TableName() string {
-	return "public.bitrix_news"
 }

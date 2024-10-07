@@ -9,23 +9,31 @@ import (
 )
 
 type CommentAPI struct {
-	Id             int       `json:"id"`
-	Text           string    `json:"text"`
-	ParentSourceId int       `json:"parent_source_id"`
-	DateCreate     int64     `json:"date_create"`
-	Author         *UserAPI  `json:"author"`
-	IsLiked        bool      `json:"is_liked"`
-	Likes          *LikesAPI `json:"likes"`
+	Id         int       `json:"id"`
+	Text       string    `json:"text"`
+	SourceId   int       `json:"source_id"`
+	DateCreate int64     `json:"date_create"`
+	Author     *UserAPI  `json:"author"`
+	Likes      *LikesAPI `json:"likes"`
 }
 
 type CommentDB struct {
-	Id             int      `json:"id"`
-	Text           string   `json:"text"`
-	ParentSourceId int      `json:"parent_source_id"`
-	DateCreated    int64    `json:"dateCreated"`
-	Author         *UserDB  `json:"author"`
-	IsLiked        bool     `json:"is_liked"`
-	Likes          *LikesDB `json:"likes"`
+	Id          int      `json:"id"`
+	Text        string   `json:"text"`
+	SourceId    int      `json:"source_id"`
+	DateCreated int64    `json:"dateCreated"`
+	Author      *UserDB  `json:"author"`
+	Likes       *LikesDB `json:"likes"`
+}
+
+type CommentDetail struct {
+	Id         int       `json:"id"`
+	Text       string    `json:"text"`
+	SourceId   int       `json:"source_id"`
+	DateCreate int64     `json:"date_create"`
+	Author     *UserAPI  `json:"author"`
+	IsLiked    bool      `json:"is_liked"`
+	Likes      *LikesAPI `json:"likes"`
 }
 
 type ListOfCommentDB []*CommentDB

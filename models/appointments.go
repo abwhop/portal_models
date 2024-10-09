@@ -80,6 +80,7 @@ type AppointmentBrief struct {
 	LogId         int             `gorm:"column:logId" json:"logId"`
 	Rubric        *RubricDB       `gorm:"column:rubric" json:"rubric"`
 	Data          *RepostedPostDB `gorm:"column:data"  json:"data"`
+	FirstComment  *CommentDB      `gorm:"column:first_comment" json:"first_comment"`
 	//ChangeDate int `gorm:"column:change_date" json:"change_date"`
 
 	//Descriptions *ListOfDescriptionDB `gorm:"column:descriptions" json:"descriptions"`
@@ -105,21 +106,22 @@ func (AppointmentBrief) TableName() string {
 }
 
 type AppointmentDetail struct {
-	Id            int       `gorm:"column:id;primaryKey" json:"id"`
-	Type          string    `gorm:"column:type;primaryKey" json:"type"`
-	Title         string    `gorm:"column:title" json:"title"`
-	ImageUrl      string    `gorm:"column:imageUrl" json:"imageUrl"`
-	DateCreated   int64     `gorm:"column:dateCreated" json:"dateCreated"`
-	DateUpdated   int64     `gorm:"column:dateUpdated" json:"dateUpdated"`
-	Rubric        *RubricDB `gorm:"column:rubric" json:"rubric"`
-	LogId         int       `gorm:"column:logId" json:"logId"`
-	CountLikes    int       `gorm:"column:countLikes" json:"countLikes"`
-	CountViews    int       `gorm:"column:countViews" json:"countViews"`
-	CanComment    bool      `gorm:"column:canComment" json:"canComment"`
-	CountComments int       `gorm:"column:countComments" json:"countComments"`
-	IsView        bool      `gorm:"column:isView" json:"isView"`
-	IsFavorite    bool      `gorm:"column:isFavorite" json:"isFavorite"`
-	IsRubric      bool      `gorm:"column:isRubric" json:"isRubric"`
+	Id            int        `gorm:"column:id;primaryKey" json:"id"`
+	Type          string     `gorm:"column:type;primaryKey" json:"type"`
+	Title         string     `gorm:"column:title" json:"title"`
+	ImageUrl      string     `gorm:"column:imageUrl" json:"imageUrl"`
+	DateCreated   int64      `gorm:"column:dateCreated" json:"dateCreated"`
+	DateUpdated   int64      `gorm:"column:dateUpdated" json:"dateUpdated"`
+	Rubric        *RubricDB  `gorm:"column:rubric" json:"rubric"`
+	LogId         int        `gorm:"column:logId" json:"logId"`
+	CountLikes    int        `gorm:"column:countLikes" json:"countLikes"`
+	CountViews    int        `gorm:"column:countViews" json:"countViews"`
+	CanComment    bool       `gorm:"column:canComment" json:"canComment"`
+	CountComments int        `gorm:"column:countComments" json:"countComments"`
+	IsView        bool       `gorm:"column:isView" json:"isView"`
+	IsFavorite    bool       `gorm:"column:isFavorite" json:"isFavorite"`
+	IsRubric      bool       `gorm:"column:isRubric" json:"isRubric"`
+	FirstComment  *CommentDB `gorm:"column:firstComment" json:"firstComment"`
 	//Data          interface{}          `gorm:"column:data" json:"data"`
 	//Votes         interface{}          `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`

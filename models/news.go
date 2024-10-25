@@ -88,7 +88,7 @@ type NewsDetail struct {
 	Votes         *ListOfVoteDetail `gorm:"column:votes" json:"votes"`
 	//Forms         interface{}          `gorm:"column:forms" json:"forms"`
 	Descriptions   *ListOfDescriptionDB   `gorm:"column:descriptions" json:"descriptions"`
-	FirstComment   *CommentDB             `gorm:"column:first_comment" json:"first_comment"`
+	FirstComment   *CommentDB             `gorm:"column:firstComment" json:"firstComment"`
 	Comments       *ListOfCommentDB       `gorm:"column:comments" json:"comments"`
 	Files          *ListOfFileDB          `gorm:"column:files" json:"files"`
 	Description    string                 `gorm:"column:description" json:"description"`

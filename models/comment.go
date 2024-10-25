@@ -13,7 +13,7 @@ type CommentAPI struct {
 	Text           string    `json:"text"`
 	SourceId       int       `json:"source_id"`
 	ParentSourceId int       `json:"parent_source_id"`
-	DateCreate     int64     `json:"date_create"`
+	DateCreated    int64     `json:"date_create"`
 	Author         *UserAPI  `json:"author"`
 	Likes          *LikesAPI `json:"likes"`
 }
@@ -33,7 +33,7 @@ type CommentDetail struct {
 	Text           string    `json:"text"`
 	SourceId       int       `json:"source_id"`
 	ParentSourceId int       `json:"parent_source_id"`
-	DateCreate     int64     `json:"date_create"`
+	DateCreate     int64     `json:"date_created"`
 	Author         *UserAPI  `json:"author"`
 	IsLiked        bool      `json:"is_liked"`
 	Likes          *LikesAPI `json:"likes"`
